@@ -3,48 +3,82 @@ let myRequest = new Request("./data.json");
 var mainContainer = document.getElementById(myRequest);
 
 fetch(myRequest)
-    .then(function (resp) {
-        return resp.json();
-    })
-    .then(function (data) { 
-        console.log(data);
+  .then(function (resp) {
+    return resp.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    let level = 1; 
+    var mainContainer = document.getElementById("myData");
 
-        data.filter(item => {
-            iteratorObject(item);
-        });
+    iteratorObject(mainContainer,data,level);
+  });
 
-        function iteratorObject(obj) {
-            var mainContainer = document.getElementById("myData");
-            let saveName;
-            for (let prop in obj) {
-                var mybr = document.createElement('br');
-                mainContainer.appendChild(mybr);
-               
-               
-                if (typeof (obj[prop]) == "object") {
-                    iteratorObject(obj[prop]);
-                }
-                else {
-                    var div = document.createElement("div");
-                    // console.log(prop.toUpperCase() + ":", obj[prop]);
-                    if (prop == "id") {
-                        div.innerHTML = 'Id: ' + obj[prop];
-                        mainContainer.appendChild(div);
-                    }
-                    if (prop == "name") { 
-                        div.innerHTML = 'Site Name:' + obj[prop];
-                        saveName = obj[prop];
-                        mainContainer.appendChild(div);
-                    }
-                    if (prop == "url") {
-                        let text = 'Site Url:' + saveName;
-                         div.innerHTML = "<a href="+ obj[prop] +">" + text + "</a>";
-                         console.log(text +":" + obj[prop]);
-                         mainContainer.appendChild(div);
 
-                    } 
-                }              
-            }
-        }
-    })
-         
+function renderItem(parent,prop,level) {
+
+  let saveName;
+  const frames = window.frames;
+
+    var div = document.createElement("div");
+    
+    div.setAttribute("class",`level${level}`)
+    var subContainerId = document.createTextNode(`Id:${prop.id}`);
+    div.appendChild(subContainerId);
+    div.appendChild(document.createElement("br"));
+   
+   
+    var subContainerName = document.createTextNode(`Site Name:${prop.name}`);
+    div.appendChild(subContainerName);
+    div.appendChild(document.createElement("br"));
+
+
+
+
+
+    // var createA = document.createElement('a');
+    // var createAText = document.createTextNode(theCounter);
+    // createA.setAttribute('href', "http://google.com");
+    // createA.appendChild(createAText);
+    // getTheTableTag.appendChild(createA);
+
+ 
+    var a = document.createElement('a');
+    var createAText = document.createTextNode(`Site Url:${prop.name}`);
+    a.setAttribute('href', `http://${prop.url}`);
+    a.appendChild(createAText);
+    div.appendChild(a);
+    parent.appendChild(div)
+
+    return div;
+
+
+//     if (prop == "id") {
+//     div.innerHTML = "Id: " + arrayObject[prop];
+//     mainContainer.appendChild(div);
+//   }
+//   if (prop == "name") {
+//     div.innerHTML = "Site Name:" + arrayObject[prop];
+//     saveName = arrayObject[prop];
+//     mainContainer.appendChild(div);
+//   }
+//   if (prop == "url") {
+//     let text = "Site Url:" + saveName;
+//     div.innerHTML =
+//       "<a href=https://" + arrayObject[prop] + ">" + text + "</a>";
+//     console.log(text + ":" + arrayObject[prop]);
+//     mainContainer.appendChild(div);
+//   }
+}
+
+function iteratorObject(mainContainer,arrayObject,level) {
+  
+  arrayObject.forEach((prop) => {
+        var nextParent =renderItem(mainContainer,prop,level);
+
+      if (prop.hasOwnProperty("subData")) {
+        iteratorObject(nextParent,prop.subData,++level);
+      }
+      
+  });
+}
