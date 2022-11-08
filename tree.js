@@ -38,15 +38,12 @@ fetch(myRequest)
                     }
                     if (prop == "url") {
                         let text = 'Site Url:' + saveName;
-                         div.innerHTML = "<a href="/+ obj[prop] +">" + text + "</a>";
+                         div.innerHTML = "<a href="+ obj[prop] +">" + text + "</a>";
                          console.log(text +":" + obj[prop]);
                          mainContainer.appendChild(div);
 
-                    }
-                  
-                }
-
-              
+                    } 
+                }              
             }
         }
     })
