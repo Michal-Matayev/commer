@@ -8,19 +8,19 @@
 
 
 #myData{
-    display: flex;
-    /* justify-content: center; */
-    /* align-items: center;
-    border-radius: 15px;
-    border-color: green;
-    border-style: solid;
-    align-items: center; */
+    display:block;
+    /* justify-content: center;  */
+    /* align-items: center; */
+    /* border-radius: 15px; */
+    /* border-color: green; */
+    /* border-style: solid; */
+    /* align-items: center;  */
     /* background-color:lightskyblue; */
 
 }
 
 .level1 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     border-radius: 15px;
@@ -30,7 +30,7 @@
     background-color: #B0E0E6;
   }
   .level2 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     border-radius: 15px;
@@ -40,7 +40,7 @@
     background-color:lightskyblue	;
   }
   .level3 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     border-radius: 15px;
@@ -50,7 +50,7 @@
     background-color: #B0C4DE;
   }
   .level4 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     border-radius: 15px;
