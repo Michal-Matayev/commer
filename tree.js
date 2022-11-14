@@ -12,6 +12,8 @@ const fetchData = () => {
 
 
 function renderItem(parent, prop, level) {
+    
+
     const div = document.createElement("div");
     div.setAttribute("class", `level level${level}`)
 
@@ -36,17 +38,16 @@ function renderItem(parent, prop, level) {
 
 function iteratorObject(mainContainer, arrayObject, level) {
     arrayObject.forEach((prop) => {
-        const nextParent = renderItem(mainContainer, prop, level);
 
+        const nextParent = renderItem(mainContainer, prop, level);  
+        console.log(nextParent);
         if (prop.hasOwnProperty("subData")) {
             iteratorObject(nextParent, prop.subData, ++level);
-            console.log(level)
+            level--;
         }
-        
-
-        
-
+               
     });
+    
 }
 
 window.addEventListener('load', fetchData);
